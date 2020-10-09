@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell shares
+{% endblock %}
+
+{% block main %}
+   <h1>Sell</h1>
+
+  <form class="form-flex" action="/sell" method="POST">
+
+        <select class="custom-select" id="selectShare" name="share">
+            <option disabled selected>Choose share to sell...</option>
+
+                {% for item in sharesList: %}
+
+                    <option id="shareOption" value="{{item['stock_symb']}}">{{item["stock_name"]}} ({{item["amount"]}})</option>
+
+                {% endfor %}
+
+        </select>
+
+           <!--add max == user stocks amount-->
+        <input class="form-control" id="amountShare" name="amount" placeholder="Amount" type="number" min=0 max=20 required>
+
+    <button type="submit" class="btn btn-primary btn320">Sell</button>
+  </form>
+
+<script>
+// set maximum amount of stocks as value and max parameter of input amountShare:
+function setMax() {
+    let selector = document.getElementById('selectShare');
+    let text = selector[selector.selectedIndex].textContent;
+    tmp = text.split(" ");
+    tmp = tmp[tmp.length-1];
+    max = tmp.slice(1,tmp.length-1)
+
+    document.querySelector('#amountShare').max = max;
+    document.querySelector('#amountShare').value = max;
+}
+
+document.querySelector('.custom-select').addEventListener('change', setMax);
+
+</script>
+
+
+{% endblock %}
+
+
+

@@ -1,0 +1,68 @@
+nav .navbar-brand
+{
+    /* size for brand */
+    font-size: xx-large;
+}
+
+/* colors for brand */
+nav .navbar-brand .blue
+{
+    color: #537fbe;
+}
+nav .navbar-brand .red
+{
+    color: #ea433b;
+}
+nav .navbar-brand .yellow
+{
+    color: #f5b82e;
+}
+nav .navbar-brand .green
+{
+    color: #2e944b;
+}
+
+main .form-control
+{
+    /* center form controls */
+    display: inline-block;
+
+    /* override Bootstrap's 100% width for form controls */
+    width: auto;
+}
+
+main
+{
+    /* scroll horizontally as needed */
+    overflow-x: auto;
+
+    /* center contents */
+    text-align: center;
+}
+
+main img
+{
+    /* constrain images on small screens */
+    max-width: 100%;
+}
+
+h1 {
+    margin-bottom: 30px;
+}
+
+
+#selectShare, #amountShare, #field320, .btn320  {
+    width: 320px;
+    margin-top: 10px;
+}
+
+.btn-buy {
+    width: 400px;
+}
+
+.form-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}

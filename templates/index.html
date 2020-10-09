@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Index page
+{% endblock %}
+
+{% block main %}
+<h1>Stocks list</h1>
+
+
+<table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Symbol</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Shares</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  {% for stocks in userStocksData: %}
+                    <tr>
+                    <th scope="row">{{userStocksData[stocks]['stock_symb']}}</th>
+                    <td>{{ userStocksData[stocks]['stock_name'] }}</td>
+                    <td>{{ userStocksData[stocks]['amount'] }}</td>
+                    <td>{{ userStocksData[stocks]['price'] }}</td>
+                    <td class="total">{{ "{:.2f}".format(userStocksData[stocks]['price']*userStocksData[stocks]['amount'])  }}</td>
+
+                  </tr>
+                  {% endfor %}
+
+
+                  <tr>
+                    <th scope="row" colspan="1">CASH</th>
+                    <td colspan="3"></td>
+                    {% for row in userSession %}
+                       <td colspan="1">{{ "${:,.2f}".format(row["cash"]) }}</td>
+                    {% endfor %}
+                  </tr>
+                  <tr>
+                    <th scope="row" colspan="4"></th>
+                    <!--Get user's current cash value from database-->
+                     {% for row in userSession %}
+                       <td colspan="1" class="cash" style="font-weight: 500">{{ row["cash"] }}</td>
+                    {% endfor %}
+                  </tr>
+                </tbody>
+              </table>
+
+              <script>
+              // count total total
+              let sum = 0;
+              const total = document.querySelectorAll('.total');
+              const cash = parseFloat(document.querySelector('.cash').textContent);
+              for (let i = 0; i < total.length; i++) {
+                sum += parseFloat(total[i].textContent);
+              }
+              sum += cash;
+              document.querySelector('.cash').textContent = `${sum.toLocaleString('en-EN', { style: 'currency', currency: 'USD' })}`
+
+              </script>
+
+{% endblock %}

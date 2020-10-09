@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Trade History
+{% endblock %}
+
+{% block main %}
+
+<h1>Trade History</h1>
+
+
+
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Type</th>
+      <th scope="col">Stock</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Price</th>
+      <th scope="col">Cost</th>
+      <th scope="col">Date</th>
+
+    </tr>
+  </thead>
+  <tbody>
+
+       {% for row in table: %}
+
+     <tr>
+
+        <th scope="col">{{row['trade_type']}}</th>
+        <td>{{row['stock_name']}}</td>
+        <td>{{row['trade_amount']}}</td>
+        <td>{{row['price']}}</td>
+        <td>{{row['cost']}}</td>
+        <td>{{row['tradedate']}}</td>
+
+    </tr>
+{% endfor %}
+
+  </tbody>
+</table>
+
+{% endblock %}
+
+

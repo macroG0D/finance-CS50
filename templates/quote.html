@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{% endblock %}
+
+{% block main %}
+   <h1>Quote Stocks</h1>
+
+
+{% if empty: %}
+  <!--do nothing-->
+{% elif notExists: %}
+  <h2>No such share</h2>
+{% else: %}
+  A share of {{stName}} ({{stSymb}}), costs ${{stPrice}}
+<h2>{{stName}}</h2>
+{% endif %}
+
+
+  <form class="form-flex" action="/quote" method="POST">
+
+    <input class="form-control" id="field320" name="symbol" placeholder="Symbol" type="text" required>
+
+    <button type="submit" class="btn btn-primary btn320">Quote</button>
+  </form>
+
+
+
+
+
+
+{% endblock %}
+
+
+
